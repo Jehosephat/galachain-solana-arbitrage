@@ -25,7 +25,7 @@ The bot evaluates both directions and automatically picks the most profitable op
 ### Step 1: Clone and Setup
 
 ```bash
-git clone https://github.com/yourusername/galachain-solana-arbitrage.git
+git clone https://github.com/jehosephat/galachain-solana-arbitrage.git
 cd galachain-solana-arbitrage
 npm run setup
 ```
