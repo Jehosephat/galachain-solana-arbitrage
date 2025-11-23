@@ -4,7 +4,7 @@ export type AlertLevel = 'info' | 'warn' | 'error' | 'success';
 
 /**
  * Send a Solana-only trade notification in a specific format
- * Format: :swap2: 150 GUSDUC → 247.6636 GALA — 2025-11-06 06:11:22.043 AM PT — ABC123DEF4~X234 — Jeff's Solana Arb
+ * Format: :swap2: 150 GUSDUC → 247.6636 GALA — 2025-11-06 06:11:22.043 AM PT — ABC123DEF4~X234 — GC - Solana Arb
  * The address is shortened (first 10 + last 5 chars) and linked to Solscan
  */
 export async function sendSolanaTradeAlert(
@@ -51,7 +51,7 @@ export async function sendSolanaTradeAlert(
   // Format wallet address as a Solscan link with shortened display
   // Display: first 10 chars + ~ + last 5 chars (e.g., ABC123DEF4~X234)
   // Link: full address to Solscan
-  let walletDisplay = "Jeff's Solana Arb";
+  let walletDisplay = "GC - Solana Arb";
   if (solanaWalletAddress) {
     // Remove any "eth|" prefix or other prefixes, just use the raw address
     const rawAddress = solanaWalletAddress.includes('|') 
@@ -70,7 +70,7 @@ export async function sendSolanaTradeAlert(
   }
 
   // Build the message in the exact format requested
-  const message = `:swap2: ${formattedAmountIn} ${tokenIn} → ${formattedAmountOut} ${tokenOut} — ${formattedTime} — ${walletDisplay} — Jeff's Solana Arb`;
+  const message = `:swap2: ${formattedAmountIn} ${tokenIn} → ${formattedAmountOut} ${tokenOut} — ${formattedTime} — ${walletDisplay} — GC - Solana Arb`;
 
   const slackBody = {
     text: message
