@@ -126,10 +126,40 @@
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
             line-height: 1.5;
+            position: relative;
         }
 
         .code-block code {
             color: #f8f8f2;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f8f8f2;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.2s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+            border-color: #28a745;
         }
 
         .warning {
@@ -201,13 +231,53 @@
                 font-size: 0.8em;
                 padding: 15px;
             }
+
+            .copy-btn {
+                font-size: 0.7em;
+                padding: 4px 8px;
+            }
         }
     </style>
+    <script>
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(function() {
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy:', err);
+                button.textContent = 'Copy failed';
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('.code-block');
+            codeBlocks.forEach(function(block) {
+                const code = block.textContent.trim();
+                const button = document.createElement('button');
+                button.className = 'copy-btn';
+                button.textContent = 'Copy';
+                button.onclick = function() {
+                    copyToClipboard(code, button);
+                };
+                block.style.paddingTop = '40px';
+                block.appendChild(button);
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 SOL Arbitrage Bot</h1>
+            <h1>🚀 GalaChain & Solana Arbitrage Bot</h1>
             <p>Quick Start Guide - Get running in 5 minutes!</p>
         </div>
 
