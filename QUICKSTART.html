@@ -235,18 +235,18 @@
                 <h2>Installation Steps</h2>
 
                 <h3><span class="step-number">1</span>Download the Bot</h3>
-                <p><strong>Option A: Clone from GitHub (Recommended)</strong></p>
-                <div class="code-block">
-git clone https://github.com/yourusername/galachain-solana-arbitrage.git
-cd galachain-solana-arbitrage
-                </div>
-
-                <p><strong>Option B: Download ZIP</strong></p>
+                <p><strong>Option A: Download ZIP (Recommended)</strong></p>
                 <ol>
                     <li>Download the latest release from GitHub</li>
                     <li>Extract the ZIP file</li>
                     <li>Open terminal in the extracted folder</li>
                 </ol>
+
+                <p><strong>Option B: Clone from GitHub</strong></p>
+                <div class="code-block">
+git clone https://github.com/yourusername/galachain-solana-arbitrage.git
+cd galachain-solana-arbitrage
+                </div>
 
                 <h3><span class="step-number">2</span>Run Setup Script</h3>
                 <div class="code-block">npm run setup</div>
@@ -295,6 +295,29 @@ SOLANA_WALLET_ADDRESS=your_actual_wallet_address_here
                 <div class="warning">
                     Important: Start with small trade sizes, Monitor the first few trades closely, The bot trades real money in live mode!
                 </div>
+
+                <h3><span class="step-number">8</span>Start the Web UI (Optional)</h3>
+                <p>The bot includes a web dashboard to monitor trades, balances, and P&L. To start it:</p>
+                
+                <p><strong>Terminal 1 - Start API Server:</strong></p>
+                <div class="code-block">
+cd application/api-server
+npm run dev
+                </div>
+                <p>The API server will start on <code>http://localhost:3000</code></p>
+
+                <p><strong>Terminal 2 - Start Frontend:</strong></p>
+                <div class="code-block">
+cd application/vue-frontend
+npm run dev
+                </div>
+                <p>The frontend will start on <code>http://localhost:5173</code> (or the port shown in terminal)</p>
+
+                <p><strong>Open in Browser:</strong></p>
+                <p>Navigate to <code>http://localhost:5173</code> to access the dashboard.</p>
+                <div class="success">
+                    The UI shows: Real-time balances, Trade history, P&L dashboard, Configuration management
+                </div>
             </div>
 
             <div class="section">
@@ -334,7 +357,6 @@ SOLANA_WALLET_ADDRESS=your_actual_wallet_address_here
                 <h2>Next Steps</h2>
                 <ul>
                     <li><strong>Read the full README.md</strong> for detailed configuration options</li>
-                    <li><strong>Check PROJECT_CONTEXT_ANALYSIS.md</strong> for technical details</li>
                     <li><strong>Start the Web UI</strong> (see README.md for instructions)</li>
                 </ul>
             </div>
