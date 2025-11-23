@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOL Arbitrage Bot - Quick Start</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .download-section {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section h3 {
+            color: #495057;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .section ul, .section ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .code-block code {
+            color: #f8f8f2;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f8f8f2;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.2s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+            border-color: #28a745;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-weight: bold;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .success::before {
+            content: "✅ ";
+            font-weight: bold;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .code-block {
+                font-size: 0.8em;
+                padding: 15px;
+            }
+
+            .copy-btn {
+                font-size: 0.7em;
+                padding: 4px 8px;
+            }
+        }
+    </style>
+    <script>
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(function() {
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy:', err);
+                button.textContent = 'Copy failed';
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('.code-block');
+            codeBlocks.forEach(function(block) {
+                const code = block.textContent.trim();
+                const button = document.createElement('button');
+                button.className = 'copy-btn';
+                button.textContent = 'Copy';
+                button.onclick = function() {
+                    copyToClipboard(code, button);
+                };
+                block.style.paddingTop = '40px';
+                block.appendChild(button);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 GalaChain & Solana Arbitrage Bot</h1>
+            <p>Quick Start Guide - Get running in 5 minutes!</p>
+        </div>
+
+        <div class="download-section">
+            <h2 style="margin-bottom: 20px; color: #333;">Download the Bot</h2>
+            <button class="download-btn" onclick="alert('Download link will be available after release!')">
+                📥 Download Latest Release
+            </button>
+            <p style="margin-top: 15px; color: #6c757d;">
+                Or clone from GitHub: <code style="background: #e9ecef; padding: 2px 6px; border-radius: 3px;">git clone https://github.com/jehosephat/galachain-solana-arbitrage.git</code>
+            </p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Prerequisites</h2>
+                <ul>
+                    <li>Node.js 18+ installed (<a href="https://nodejs.org/" target="_blank">Download</a>)</li>
+                    <li>GalaChain wallet with private key</li>
+                    <li>Solana wallet with private key</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Installation Steps</h2>
+
+                <h3><span class="step-number">1</span>Download the Bot</h3>
+                <p><strong>Option A: Download ZIP (Recommended)</strong></p>
+                <ol>
+                    <li>Download the latest release from GitHub</li>
+                    <li>Extract the ZIP file</li>
+                    <li>Open terminal in the extracted folder</li>
+                </ol>
+
+                <p><strong>Option B: Clone from GitHub</strong></p>
+                <div class="code-block">
+git clone https://github.com/jehosephat/galachain-solana-arbitrage.git
+cd galachain-solana-arbitrage
+                </div>
+
+                <h3><span class="step-number">2</span>Run Setup Script</h3>
+                <div class="code-block">npm run setup</div>
+                <div class="success">
+                    This will: Check your Node.js version, Install all dependencies, Create .env file, Initialize state files, Build the project
+                </div>
+                <p><strong>Time:</strong> ~2-5 minutes depending on your internet speed</p>
+
+                <h3><span class="step-number">3</span>Configure Your Wallets</h3>
+                <p>Open <code>.env</code> in a text editor and fill in:</p>
+                <div class="code-block">
+GALACHAIN_PRIVATE_KEY=your_actual_private_key_here
+GALACHAIN_WALLET_ADDRESS=your_actual_wallet_address_here
+SOLANA_PRIVATE_KEY=your_actual_private_key_here
+SOLANA_WALLET_ADDRESS=your_actual_wallet_address_here
+                </div>
+                <div class="warning">
+                    Security: Never share your .env file or commit it to Git!
+                </div>
+
+                <h3><span class="step-number">4</span>Test in Dry-Run Mode</h3>
+                <div class="code-block">npm run dev</div>
+                <p>You should see:</p>
+                <ul>
+                    <li>✅ Configuration loaded</li>
+                    <li>✅ Balance checks</li>
+                    <li>✅ Token evaluation starting</li>
+                    <li>⚠️ No actual trades (dry-run mode)</li>
+                </ul>
+                <p><strong>Press Ctrl+C to stop</strong></p>
+
+                <h3><span class="step-number">5</span>Check Your Balances</h3>
+                <div class="code-block">npm run balances</div>
+                <p>This shows your current balances on both chains.</p>
+
+                <h3><span class="step-number">6</span>Configure Tokens (Optional)</h3>
+                <p>Edit <code>config/tokens.json</code> to:</p>
+                <ul>
+                    <li>Enable/disable specific tokens</li>
+                    <li>Adjust trade sizes</li>
+                    <li>Set quote currencies</li>
+                </ul>
+
+                <h3><span class="step-number">7</span>Start Live Trading (When Ready)</h3>
+                <div class="code-block">RUN_MODE=live npm run dev</div>
+                <div class="warning">
+                    Important: Start with small trade sizes, Monitor the first few trades closely, The bot trades real money in live mode!
+                </div>
+
+                <h3><span class="step-number">8</span>Start the Web UI (Optional)</h3>
+                <p>The bot includes a web dashboard to monitor trades, balances, and P&L. To start it:</p>
+                
+                <p><strong>Terminal 1 - Start API Server:</strong></p>
+                <div class="code-block">
+cd application/api-server
+npm run dev
+                </div>
+                <p>The API server will start on <code>http://localhost:3000</code></p>
+
+                <p><strong>Terminal 2 - Start Frontend:</strong></p>
+                <div class="code-block">
+cd application/vue-frontend
+npm run dev
+                </div>
+                <p>The frontend will start on <code>http://localhost:5173</code> (or the port shown in terminal)</p>
+
+                <p><strong>Open in Browser:</strong></p>
+                <p>Navigate to <code>http://localhost:5173</code> to access the dashboard.</p>
+                <div class="success">
+                    The UI shows: Real-time balances, Trade history, P&L dashboard, Configuration management
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Troubleshooting</h2>
+                
+                <h3>"Node.js version too old"</h3>
+                <p>Install Node.js 18+ from <a href="https://nodejs.org/" target="_blank">nodejs.org</a></p>
+
+                <h3>"npm install failed"</h3>
+                <ul>
+                    <li>Check your internet connection</li>
+                    <li>Try: <code>npm cache clean --force</code> then <code>npm install</code></li>
+                </ul>
+
+                <h3>"Configuration validation failed"</h3>
+                <ul>
+                    <li>Check <code>config/config.json</code> and <code>config/tokens.json</code> for syntax errors</li>
+                    <li>Ensure JSON is valid (use a JSON validator)</li>
+                </ul>
+
+                <h3>"Insufficient funds"</h3>
+                <ul>
+                    <li>Run <code>npm run balances</code> to check</li>
+                    <li>Ensure you have tokens on GalaChain and SOL on Solana</li>
+                    <li>The bot needs inventory on both chains</li>
+                </ul>
+
+                <h3>"Quote fetch failed"</h3>
+                <ul>
+                    <li>Check your internet connection</li>
+                    <li>Verify token mints in <code>config/tokens.json</code> are correct</li>
+                    <li>Some tokens may not have liquidity</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Next Steps</h2>
+                <ul>
+                    <li><strong>Read the full README.md</strong> for detailed configuration options</li>
+                    <li><strong>Start the Web UI</strong> (see README.md for instructions)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Getting Help</h2>
+                <ul>
+                    <li>Check <code>logs/arbitrage-bot.log</code> for detailed error messages</li>
+                    <li>Review the troubleshooting section in README.md</li>
+                    <li>Open an issue on GitHub if you find a bug</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Ready to start?</strong> Run <code>npm run setup</code> and follow the steps above!</p>
+            <p style="margin-top: 15px;">
+                <a href="README.md">Full Documentation</a> | 
+                <a href="https://github.com/jehosephat/galachain-solana-arbitrage">GitHub Repository</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

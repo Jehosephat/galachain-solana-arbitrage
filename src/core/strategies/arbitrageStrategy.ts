@@ -7,7 +7,7 @@
 
 import { GalaChainQuote, SolanaQuote } from '../../types/core';
 import { RateConversionResult } from '../rateConverter';
-import { EdgeCalculationResult } from '../edgeCalculator';
+import { EdgeCalculationResult } from '../unifiedEdgeCalculator';
 
 /**
  * Chain-side configuration for a strategy
