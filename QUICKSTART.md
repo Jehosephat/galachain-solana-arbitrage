@@ -19,7 +19,7 @@ Get the SOL Arbitrage Bot running in 5 minutes!
 
 **Option B: Clone from GitHub**
 ```bash
-git clone https://github.com/yourusername/galachain-solana-arbitrage.git
+git clone https://github.com/jehosephat/galachain-solana-arbitrage.git
 cd galachain-solana-arbitrage
 ```
 
