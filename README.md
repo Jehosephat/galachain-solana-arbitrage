@@ -18,9 +18,53 @@ The bot operates in **"Inventory Mode"** - it maintains inventory on both chains
 
 The bot evaluates both directions and automatically picks the most profitable opportunity.
 
-## 🚀 Quick Start
+## 🚀 Quick Start (3 Steps!)
 
-### Prerequisites
+> **New to the bot?** See [QUICKSTART.md](QUICKSTART.md) for a detailed step-by-step guide.
+
+### Step 1: Clone and Setup
+
+```bash
+git clone https://github.com/yourusername/galachain-solana-arbitrage.git
+cd galachain-solana-arbitrage
+npm run setup
+```
+
+The setup script will automatically:
+- ✅ Check prerequisites (Node.js 18+)
+- ✅ Install all dependencies (core, API server, frontend)
+- ✅ Create `.env` file from `env.example`
+- ✅ Initialize state files
+- ✅ Build the project
+
+### Step 2: Configure Your Wallets
+
+Edit `.env` and add your private keys and wallet addresses:
+
+```env
+GALACHAIN_PRIVATE_KEY=your_gala_private_key_here
+GALACHAIN_WALLET_ADDRESS=your_gala_wallet_address_here
+SOLANA_PRIVATE_KEY=your_solana_private_key_here
+SOLANA_WALLET_ADDRESS=your_solana_wallet_address_here
+```
+
+### Step 3: Run the Bot
+
+**Test in dry-run mode first (safe, no real trades):**
+```bash
+npm run dev
+```
+
+**When ready for live trading:**
+```bash
+RUN_MODE=live npm run dev
+```
+
+That's it! The bot will start scanning for arbitrage opportunities.
+
+---
+
+## 📋 Prerequisites
 
 - **Node.js** 18+ and npm
 - **GalaChain Wallet** with private key (used for trading and bridging)
@@ -29,7 +73,7 @@ The bot evaluates both directions and automatically picks the most profitable op
   - CoinGecko API key (for USD price data)
   - Jupiter API key (optional, free tier available)
 
-### Installation
+## 📦 Installation
 
 #### Option 1: Automated Setup (Recommended)
 
